@@ -6,8 +6,6 @@
 
 import axios from "axios";
 
-// console.log(axios);
-
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -32,7 +30,13 @@ import axios from "axios";
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  `tetondan`,
+  `dustinmyers`,
+  `justsml`,
+  `luishrd`,
+  `bigknell`,
+];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -133,8 +137,31 @@ axios
   .then((res) => {
     cards.appendChild(userCardMaker(res.data));
   })
-  .catch()
+  .catch((err) =>
+    console.log(err, `\n Or maybe the user you're looking for doesn't exist.`)
+  )
   .finally();
+
+followersArray.forEach((arrFollower) => {
+  axios
+    .get(`https://api.github.com/users/${arrFollower}`)
+    .then((res) => {
+      cards.appendChild(userCardMaker(res.data));
+    })
+    .catch((err) => {
+      console.log(
+        err,
+        `\n Or maybe the user you're looking for doesn't exist.`
+      ),
+        cards.prepend(
+          elementMaker(
+            `p`,
+            `${arrFollower}, "may not exist. See console for error log."`
+          )
+        );
+    })
+    .finally();
+});
 
 /*
   List of LS Instructors Github username's:
