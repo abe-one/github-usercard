@@ -73,11 +73,23 @@ const elementMaker = function (element, textAdd, ...classes) {
   }
   return newElement;
 };
+const pseudoAppendChildBecauseMS = function (parentEl, ...childEls) {
+  childEls.forEach((child) => parentEl.appendChild(child));
+  return parentEl;
+};
+
+// console.log(`function test`
+//   pseudoAppendChildBecauseMS(
+//     elementMaker(`div`, `bigdiv`),
+//     elementMaker(`div`, `little div1`),
+//     elementMaker(`div`, `little div2`)
+//   )
+// );
 
 // How to automatically create and populate variables with all keys from object?
 //
 //
-const userCard = function ({
+const userCardMaker = function ({
   avatar_url,
   name,
   login,
@@ -88,7 +100,48 @@ const userCard = function ({
   bio,
 }) {
   let card = elementMaker(`div`, ``, `card`);
+  let resAvatarImg = elementMaker(`img`);
+  resAvatarImg.src = avatar_url;
+  let card_info = elementMaker(`div`, ``, `card-info`);
+  let resName = elementMaker(`h3`, name, `name`);
+  let resUsername = elementMaker(`p`, login, `username`);
+  let resLocation = elementMaker(`p`, location);
+  let resProfileURL = elementMaker(`a`, html_url);
+  resProfileURL.href = html_url;
+  let profile = elementMaker(`p`, `Profile: ${resProfileURL}`);
+  let resFollowerNum = elementMaker(`p`, `Followers: ${followers}`);
+  let resFollowingNum = elementMaker(`p`, `Following: ${following}`);
+  let resBio = elementMaker(`p`, bio);
+
+  // card.appendChild(resAvatarImg);
+  // card.appendChild(card_info);
+  pseudoAppendChildBecauseMS(card, resAvatarImg, card_info);
+  pseudoAppendChildBecauseMS(
+    card_info,
+    resName,
+    resUsername,
+    resLocation,
+    profile,
+    resFollowerNum,
+    resFollowingNum,
+    resBio
+  );
+
+  return card;
 };
+
+console.log(
+  userCardMaker({
+    avatar_url: `bioiet`,
+    name: `bioiet`,
+    login: `bioiet`,
+    location: `bioiet`,
+    html_url: `bioieteee`,
+    followers: `bioiet`,
+    following: `bioiet`,
+    bio: `bioiet`,
+  })
+);
 
 /*
   List of LS Instructors Github username's:
