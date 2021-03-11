@@ -6,7 +6,7 @@
 
 import axios from "axios";
 
-console.log(axios);
+// console.log(axios);
 
 axios.get(`https://api.github.com/users/abe-one`).then().catch();
 
@@ -65,7 +65,16 @@ const followersArray = [];
     bio
 */
 
-const elementMaker = function (elmnt, textAdd, ...classes) {};
+const elementMaker = function (element, textAdd, ...classes) {
+  let newElement = document.createElement(element);
+  newElement.textContent = textAdd;
+  if (classes.length > 0) {
+    newElement.classList.add(classes.toString());
+  }
+  return newElement;
+};
+
+console.log(elementMaker(`div`, `inner text`, `classy1`, `classy2`));
 
 // How to automatically create and populate variables with all keys from object?
 //
