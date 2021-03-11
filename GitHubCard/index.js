@@ -74,21 +74,20 @@ const elementMaker = function (element, textAdd, ...classes) {
   return newElement;
 };
 
-console.log(elementMaker(`div`, `inner text`, `classy1`, `classy2`));
-
 // How to automatically create and populate variables with all keys from object?
 //
 //
-const userCard = function (apiObj) {
-  // Card variables
-  let localAvatar = apiObj.avatar_url;
-  let localName = apiObj.name;
-  let localUsername = apiObj.login;
-  let localLocation = apiObj.location;
-  let localUserURL = apiObj.html_url;
-  let localFollowercount = apiObj.followers;
-  let localFollowingcount = apiObj.followers;
-  let localBio = apiObj.bio;
+const userCard = function ({
+  avatar_url,
+  name,
+  login,
+  location,
+  html_url,
+  followers,
+  following,
+  bio,
+}) {
+  let card = elementMaker(`div`, ``, `card`);
 };
 
 /*
