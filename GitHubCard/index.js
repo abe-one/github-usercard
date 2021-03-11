@@ -4,6 +4,12 @@
     https://api.github.com/users/<your name>
 */
 
+import axios from "axios";
+
+console.log(axios);
+
+axios.get(`https://api.github.com/users/abe-one`).then().catch();
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -48,7 +54,33 @@ const followersArray = [];
         <p>Bio: {users bio}</p>
       </div>
     </div>
+
+    img url`
+    name`
+    username`
+    location`
+    profile address`
+    follower count
+    following count
+    bio
 */
+
+const elementMaker = function (elmnt, textAdd, ...classes) {};
+
+// How to automatically create and populate variables with all keys from object?
+//
+//
+const userCard = function (apiObj) {
+  // Card variables
+  let localAvatar = apiObj.avatar_url;
+  let localName = apiObj.name;
+  let localUsername = apiObj.login;
+  let localLocation = apiObj.location;
+  let localUserURL = apiObj.html_url;
+  let localFollowercount = apiObj.followers;
+  let localFollowingcount = apiObj.followers;
+  let localBio = apiObj.bio;
+};
 
 /*
   List of LS Instructors Github username's:
