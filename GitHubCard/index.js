@@ -8,8 +8,6 @@ import axios from "axios";
 
 // console.log(axios);
 
-axios.get(`https://api.github.com/users/abe-one`).then().catch();
-
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -113,8 +111,6 @@ const userCardMaker = function ({
   let resFollowingNum = elementMaker(`p`, `Following: ${following}`);
   let resBio = elementMaker(`p`, bio);
 
-  // card.appendChild(resAvatarImg);
-  // card.appendChild(card_info);
   pseudoAppendChildBecauseMS(card, resAvatarImg, card_info);
   pseudoAppendChildBecauseMS(
     card_info,
@@ -130,18 +126,15 @@ const userCardMaker = function ({
   return card;
 };
 
-console.log(
-  userCardMaker({
-    avatar_url: `bioiet`,
-    name: `bioiet`,
-    login: `bioiet`,
-    location: `bioiet`,
-    html_url: `bioieteee`,
-    followers: `bioiet`,
-    following: `bioiet`,
-    bio: `bioiet`,
+let cards = document.querySelector(`.cards`);
+
+axios
+  .get(`https://api.github.com/users/abe-one`)
+  .then((res) => {
+    cards.appendChild(userCardMaker(res.data));
   })
-);
+  .catch()
+  .finally();
 
 /*
   List of LS Instructors Github username's:
