@@ -101,6 +101,7 @@ const userCardMaker = function ({
   following,
   bio,
 }) {
+  // debugger;
   let card = elementMaker(`div`, ``, `card`);
   let resAvatarImg = elementMaker(`img`);
   resAvatarImg.src = avatar_url;
@@ -110,7 +111,8 @@ const userCardMaker = function ({
   let resLocation = elementMaker(`p`, location);
   let resProfileURL = elementMaker(`a`, html_url);
   resProfileURL.href = html_url;
-  let profile = elementMaker(`p`, `Profile: ${resProfileURL}`);
+  let profile = elementMaker(`p`, `Profile: `);
+  profile.appendChild(resProfileURL);
   let resFollowerNum = elementMaker(`p`, `Followers: ${followers}`);
   let resFollowingNum = elementMaker(`p`, `Following: ${following}`);
   let resBio = elementMaker(`p`, bio);
